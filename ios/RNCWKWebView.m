@@ -105,6 +105,7 @@ static NSURLCredential* clientAuthenticationCredential;
 
 - (void)didMoveToWindow
 {
+  [_webView.configuration.preferences setValue:@YES forKey:@"allowFileAccessFromFileURLs"];
   if (self.window != nil && _webView == nil) {
     WKWebViewConfiguration *wkWebViewConfig = [WKWebViewConfiguration new];
     if (_incognito) {
@@ -398,7 +399,8 @@ static NSURLCredential* clientAuthenticationCredential;
         [_webView loadRequest:request];
     }
     else {
-        [_webView loadFileURL:request.URL allowingReadAccessToURL:request.URL];
+        NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+        [_webView loadFileURL:request.URL allowingReadAccessToURL:[NSURL fileURLWithPath:documentPath]];
     }
 }
 
