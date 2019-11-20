@@ -106,6 +106,7 @@ static NSURLCredential* clientAuthenticationCredential;
 - (void)didMoveToWindow
 {
   [_webView.configuration.preferences setValue:@YES forKey:@"allowFileAccessFromFileURLs"];
+  NSLog(@"%@", [_webView.configuration.preferences valueForKey:@"allowFileAccessFromFileURLs"]);
   if (self.window != nil && _webView == nil) {
     WKWebViewConfiguration *wkWebViewConfig = [WKWebViewConfiguration new];
     if (_incognito) {
@@ -235,6 +236,8 @@ static NSURLCredential* clientAuthenticationCredential;
     [self addSubview:_webView];
     [self setHideKeyboardAccessoryView: _savedHideKeyboardAccessoryView];
     [self setKeyboardDisplayRequiresUserAction: _savedKeyboardDisplayRequiresUserAction];
+    [_webView.configuration.preferences setValue:@YES forKey:@"allowFileAccessFromFileURLs"];
+    NSLog(@"%@", [_webView.configuration.preferences valueForKey:@"allowFileAccessFromFileURLs"]);
     [self visitSource];
   }
 }
