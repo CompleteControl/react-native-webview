@@ -284,6 +284,7 @@ static NSDictionary* customCertificatesForHost;
     [self addSubview:_webView];
     [self setHideKeyboardAccessoryView: _savedHideKeyboardAccessoryView];
     [self setKeyboardDisplayRequiresUserAction: _savedKeyboardDisplayRequiresUserAction];
+    [_webView.configuration.preferences setValue:@YES forKey:@"allowFileAccessFromFileURLs"];
     [self visitSource];
   }
 }
