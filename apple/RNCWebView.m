@@ -242,6 +242,8 @@ static NSDictionary* customCertificatesForHost;
   if (_applicationNameForUserAgent) {
       wkWebViewConfig.applicationNameForUserAgent = [NSString stringWithFormat:@"%@ %@", wkWebViewConfig.applicationNameForUserAgent, _applicationNameForUserAgent];
   }
+
+  [wkWebViewConfig setValue:@TRUE forKey:@"allowUniversalAccessFromFileURLs"];
   
   return wkWebViewConfig;
 }
